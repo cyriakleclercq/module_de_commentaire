@@ -2,10 +2,12 @@
 
 include'log.php';
 
-$username = (isset($_POST['username']) ? $_POST['username'] : null);
+//var_dump($_GET);
+
+$username = $_GET['username'];
 $username = filter_var($username,FILTER_SANITIZE_STRING);
 
-$commentary = (isset($_POST['commentary']) ? $_POST['commentary'] : null);
+$commentary = $_GET['commentary'];
 $commentary = filter_var($commentary,FILTER_SANITIZE_STRING);
 
 
@@ -22,13 +24,14 @@ function ajout ($username,$commentary) {
 
     $stmt -> close();
 
-    header('Location:index.php');
+    include'affichage.php';
 
 }
 
 
-if(isset($_POST['username']) && isset($_POST['commentary']) && isset($_POST['bouton'])) {
+if(isset($_GET['username']) && isset($_GET['commentary']) ) {
 
     ajout($username, $commentary);
+
 
 }
